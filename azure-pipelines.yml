@@ -13,11 +13,23 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'webapplication1'
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'trpetlpc-diagnostics-weeu-dev'
     appType: 'webApp'
     appName: 'WebApplication1published'
-    package: 'https://github.com/anujagandhiazure/WebApplication1'
+    package: 'D:\home\site\wwwroot\*.zip'
     deploymentMethod: 'auto'
    
