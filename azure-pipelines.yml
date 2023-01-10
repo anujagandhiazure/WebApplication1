@@ -18,6 +18,6 @@ steps:
     azureSubscription: 'trpetlpc-diagnostics-weeu-dev'
     appType: 'webApp'
     appName: 'WebApplication1published'
-    package: 'https://github.com/anujagandhiazure/WebApplication1.git'
+    package: 'https://github.com/anujagandhiazure/WebApplication1'
     deploymentMethod: 'auto'
    
